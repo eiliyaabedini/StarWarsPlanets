@@ -1,10 +1,13 @@
 package ir.iact.starwarsplanets.presentation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import ir.iact.starwarsplanets.domain.usecase.PlanetUseCase
 import ir.iact.starwarsplanets.presentation.model.PlanetListUiState
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
 
 class PlanetListViewModel(
     private val planetUseCase: PlanetUseCase
@@ -12,5 +15,15 @@ class PlanetListViewModel(
 
     private var _uiState = MutableStateFlow(PlanetListUiState.Empty)
 
-    val uiState = _uiState.asStateFlow()
+    val uiState = _uiState
+        .onStart { initiateData() }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = PlanetListUiState.Empty
+        )
+
+    private fun initiateData() {
+        _uiState.value = PlanetListUiState(isLoading = true, planets = emptyList())
+    }
 }

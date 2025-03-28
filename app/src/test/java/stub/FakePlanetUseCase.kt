@@ -2,10 +2,11 @@ package stub
 
 import ir.iact.starwarsplanets.domain.model.Planet
 import ir.iact.starwarsplanets.domain.usecase.PlanetUseCase
+import kotlinx.coroutines.delay
 
 class FakePlanetUseCase : PlanetUseCase {
 
-    private val planetsMap = mutableMapOf(
+    val planetsMap = mutableMapOf(
         "Earth" to Planet(
             name = "Earth",
             climate = "Tropical",
@@ -25,6 +26,7 @@ class FakePlanetUseCase : PlanetUseCase {
     )
 
     override suspend fun getPlanets(): List<Planet> {
+        delay(1000)
         return planetsMap.values.toList()
     }
 
