@@ -1,11 +1,14 @@
 package ir.iact.starwarsplanets.presentation
 
 import androidx.lifecycle.ViewModel
+import ir.iact.starwarsplanets.domain.usecase.PlanetUseCase
 import ir.iact.starwarsplanets.presentation.model.PlanetListUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class PlanetListViewModel : ViewModel() {
+class PlanetListViewModel(
+    private val planetUseCase: PlanetUseCase
+) : ViewModel() {
 
     private var _uiState = MutableStateFlow(PlanetListUiState.Empty)
 
