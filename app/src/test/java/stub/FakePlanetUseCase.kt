@@ -6,6 +6,8 @@ import kotlinx.coroutines.delay
 
 class FakePlanetUseCase : PlanetUseCase {
 
+    private var shouldReturnError = false
+
     val planetsMap = mutableMapOf(
         "Earth" to Planet(
             name = "Earth",
@@ -25,12 +27,24 @@ class FakePlanetUseCase : PlanetUseCase {
 
     )
 
+    fun setShouldReturnError(value: Boolean) {
+        shouldReturnError = value
+    }
+
+
     override suspend fun getPlanets(): List<Planet> {
         delay(1000)
+        if (shouldReturnError) {
+            throw Exception("Error")
+        }
         return planetsMap.values.toList()
     }
 
     override suspend fun getPlanet(name: String): Planet {
+        delay(1000)
+        if (shouldReturnError) {
+            throw Exception("Error")
+        }
         return planetsMap[name] ?: throw IllegalArgumentException("Planet not found")
     }
 }

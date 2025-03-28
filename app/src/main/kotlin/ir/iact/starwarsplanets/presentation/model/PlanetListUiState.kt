@@ -4,7 +4,8 @@ import ir.iact.starwarsplanets.domain.model.Planet
 
 data class PlanetListUiState(
     val isLoading: Boolean,
-    val planets: List<Planet>
+    val planets: List<Planet>,
+    val hasError: String? = null
 ) {
     companion object {
         val Empty = PlanetListUiState(
