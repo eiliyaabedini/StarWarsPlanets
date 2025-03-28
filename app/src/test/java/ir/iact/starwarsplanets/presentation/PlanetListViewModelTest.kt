@@ -33,7 +33,7 @@ class PlanetListViewModelTest {
 
             // Then we expect the loading state emitted from initiateData()
             assertEquals(
-                PlanetListUiState(isLoading = true, planets = emptyList()),
+                PlanetListUiState.Empty.copy(isLoading = true),
                 awaitItem()
             )
         }
@@ -50,7 +50,7 @@ class PlanetListViewModelTest {
 
             // Then we expect the loading state emitted from initiateData()
             assertEquals(
-                PlanetListUiState(isLoading = true, planets = emptyList()),
+                PlanetListUiState.Empty.copy(isLoading = true),
                 awaitItem()
             )
 
@@ -79,7 +79,7 @@ class PlanetListViewModelTest {
 
             // Then we expect the loading state emitted from initiateData()
             assertEquals(
-                PlanetListUiState(isLoading = true, planets = emptyList()),
+                PlanetListUiState.Empty.copy(isLoading = true),
                 awaitItem()
             )
 
@@ -90,7 +90,7 @@ class PlanetListViewModelTest {
                 PlanetListUiState(
                     isLoading = false,
                     hasError = "Error",
-                    planets = planetUseCase.planetsMap.values.toList()
+                    planets = emptyList()
                 ),
                 awaitItem()
             )

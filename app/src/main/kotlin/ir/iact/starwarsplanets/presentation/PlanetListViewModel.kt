@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class PlanetListViewModel(
     private val planetUseCase: PlanetUseCase
@@ -24,6 +25,18 @@ class PlanetListViewModel(
         )
 
     private fun initiateData() {
-        _uiState.value = PlanetListUiState(isLoading = true, planets = emptyList())
+        viewModelScope.launch {
+            _uiState.value = PlanetListUiState(isLoading = true, planets = emptyList())
+            try {
+                val planets = planetUseCase.getPlanets()
+                _uiState.value = PlanetListUiState(isLoading = false, planets = planets)
+            } catch (e: Exception) {
+                _uiState.value = PlanetListUiState(
+                    isLoading = false,
+                    hasError = e.message,
+                    planets = emptyList()
+                )
+            }
+        }
     }
 }
