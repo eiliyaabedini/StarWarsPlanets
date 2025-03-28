@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StarWarsPlanets</string>
+    <string name="climate">Climate:</string>
+    <string name="population">Population: %1$s</string>
 </resources>
