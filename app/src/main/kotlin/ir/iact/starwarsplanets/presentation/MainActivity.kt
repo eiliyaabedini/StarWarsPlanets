@@ -1,4 +1,4 @@
-package ir.iact.starwarsplanets
+package ir.iact.starwarsplanets.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,10 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import ir.iact.starwarsplanets.ui.theme.StarWarsPlanetsTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,28 +17,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             StarWarsPlanetsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    PlanetListScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        planets = emptyList()
+
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StarWarsPlanetsTheme {
-        Greeting("Android")
     }
 }
