@@ -2,6 +2,7 @@ package ir.iact.starwarsplanets.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.iact.starwarsplanets.domain.usecase.PlanetUseCase
 import ir.iact.starwarsplanets.presentation.model.PlanetListUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,8 +10,10 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PlanetListViewModel(
+@HiltViewModel
+class PlanetListViewModel @Inject constructor(
     private val planetUseCase: PlanetUseCase
 ) : ViewModel() {
 
