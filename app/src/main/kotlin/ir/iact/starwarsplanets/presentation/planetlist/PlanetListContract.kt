@@ -1,9 +1,11 @@
 package ir.iact.starwarsplanets.presentation.planetlist
 
+import androidx.compose.runtime.Stable
 import ir.iact.starwarsplanets.domain.model.Planet
 
 object PlanetListContract {
 
+    @Stable
     data class UiState(
         val isLoading: Boolean,
         val planets: List<Planet>,
