@@ -15,6 +15,14 @@ class FakePlanetRepository : PlanetRepository {
         return planets.toList()
     }
 
+    override suspend fun getPlanet(name: String): Planet {
+        if (throwError) {
+            throw Exception("Error getting planet")
+        }
+        return planets.find { it.name == name }
+            ?: throw Exception("Planet not found")
+    }
+
     fun setPlanets(newPlanets: List<Planet>) {
         planets = newPlanets.toMutableList()
     }

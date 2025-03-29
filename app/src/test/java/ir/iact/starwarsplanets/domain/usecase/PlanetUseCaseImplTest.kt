@@ -51,6 +51,29 @@ class PlanetUseCaseImplTest {
         planetRepository.setThrowError(true)
         planetUseCase.getPlanets()
     }
+
+    @Test
+    fun `WHEN getPlanet THEN return planet from repository`() = runTest {
+        val planet = Planet(
+            name = "Tatooine",
+            population = 200000L,
+            climate = "arid",
+            diameter = 10465,
+            gravity = "1 standard",
+            terrain = "desert"
+        )
+        planetRepository.setPlanets(listOf(planet))
+
+        val actualPlanet = planetUseCase.getPlanet("Tatooine")
+
+        assertEquals(planet, actualPlanet)
+    }
+
+    @Test(expected = Exception::class)
+    fun `WHEN getPlanet throw error THEN usecase should throw error`() = runTest {
+        planetRepository.setThrowError(true)
+        planetUseCase.getPlanet("any")
+    }
 }
 
 

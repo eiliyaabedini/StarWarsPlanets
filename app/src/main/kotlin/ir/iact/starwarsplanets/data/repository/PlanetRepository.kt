@@ -4,4 +4,5 @@ import ir.iact.starwarsplanets.domain.model.Planet
 
 interface PlanetRepository {
     suspend fun getPlanets(): List<Planet>
+    suspend fun getPlanet(name: String): Planet
 }

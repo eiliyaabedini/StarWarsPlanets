@@ -12,6 +12,6 @@ class PlanetUseCaseImpl @Inject constructor(
     }
 
     override suspend fun getPlanet(name: String): Planet {
-        TODO("Not yet implemented")
+        return planetRepository.getPlanet(name)
     }
 }
