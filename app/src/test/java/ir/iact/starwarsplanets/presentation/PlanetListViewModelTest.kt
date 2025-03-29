@@ -2,6 +2,8 @@ package ir.iact.starwarsplanets.presentation
 
 import CoroutineTestRule
 import app.cash.turbine.test
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.Event
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiInteraction
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListViewModel
 import junit.framework.TestCase.assertEquals
@@ -97,4 +99,55 @@ class PlanetListViewModelTest {
             )
         }
     }
+
+    @Test
+    fun `GIVEN OnRetryClicked WHEN onUiInteraction THEN retry fetching data`() = runTest {
+        planetUseCase.setShouldReturnError(true)
+        viewModel = PlanetListViewModel(planetUseCase)
+
+        viewModel.uiState.test {
+            assertEquals(UiState.Empty, awaitItem())
+            assertEquals(
+                UiState.Empty.copy(isLoading = true),
+                awaitItem()
+            )
+            advanceTimeBy(1000)
+            assertEquals(
+                UiState(
+                    isLoading = false,
+                    hasError = "Error",
+                    planets = emptyList()
+                ),
+                awaitItem()
+            )
+
+            planetUseCase.setShouldReturnError(false)
+            viewModel.onUiInteraction(UiInteraction.OnRetryClicked)
+            assertEquals(
+                UiState.Empty.copy(isLoading = true),
+                awaitItem()
+            )
+            advanceTimeBy(1000)
+            assertEquals(
+                UiState(
+                    isLoading = false,
+                    planets = planetUseCase.planetsMap.values.toList()
+                ),
+                awaitItem()
+            )
+        }
+    }
+
+    @Test
+    fun `GIVEN OnPlanetClicked WHEN onUiInteraction THEN send NavigateToPlanetDetail event`() =
+        runTest {
+            viewModel = PlanetListViewModel(planetUseCase)
+            val selectedPlanet = planetUseCase.planetsMap.values.first()
+
+            viewModel.event.test {
+                viewModel.onUiInteraction(UiInteraction.OnPlanetClicked(selectedPlanet))
+
+                assertEquals(Event.NavigateToPlanetDetail(selectedPlanet), awaitItem())
+            }
+        }
 }

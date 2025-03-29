@@ -19,6 +19,10 @@ object PlanetListContract {
         }
     }
 
+    sealed class Event {
+        data class NavigateToPlanetDetail(val planet: Planet) : Event()
+    }
+
     sealed class UiInteraction {
         data class OnPlanetClicked(val planet: Planet) : UiInteraction()
         data object OnRetryClicked : UiInteraction()
