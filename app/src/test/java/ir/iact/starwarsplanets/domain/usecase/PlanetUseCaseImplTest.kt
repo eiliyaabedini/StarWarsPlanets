@@ -14,9 +14,30 @@ class PlanetUseCaseImplTest {
     @Test
     fun `WHEN getPlanets THEN return planets from repository`() = runTest {
         val expectedPlanets = listOf(
-            Planet(name = "Tatooine", population = 200000L, climate = "arid"),
-            Planet(name = "Alderaan", population = 2000000000L, climate = "temperate"),
-            Planet(name = "Yavin IV", population = 1000L, climate = "tropical, temperate")
+            Planet(
+                name = "Tatooine",
+                population = 200000L,
+                climate = "arid",
+                diameter = 10465,
+                gravity = "1 standard",
+                terrain = "desert"
+            ),
+            Planet(
+                name = "Alderaan",
+                population = 2000000000L,
+                climate = "temperate",
+                diameter = 12500,
+                gravity = "1 standard",
+                terrain = "grasslands, mountains"
+            ),
+            Planet(
+                name = "Yavin IV",
+                population = 1000L,
+                climate = "tropical, temperate",
+                diameter = 10200,
+                gravity = "1 standard",
+                terrain = "jungle, rainforests"
+            )
         )
         planetRepository.setPlanets(expectedPlanets)
 

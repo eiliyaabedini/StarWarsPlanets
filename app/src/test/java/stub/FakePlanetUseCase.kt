@@ -12,17 +12,26 @@ class FakePlanetUseCase : PlanetUseCase {
         "Earth" to Planet(
             name = "Earth",
             climate = "Tropical",
-            population = 7_000_000_000
+            population = 7_000_000_000,
+            diameter = 12_756,
+            gravity = "1 standard",
+            terrain = "grasslands, mountains"
         ),
         "Mars" to Planet(
             name = "Mars",
             climate = "Cold",
-            population = 0
+            population = 0,
+            diameter = 6_792,
+            gravity = "0.3 standard",
+            terrain = "deserts"
         ),
         "Jupiter" to Planet(
             name = "Jupiter",
             climate = "Hot",
-            population = 1_000_000_000
+            population = 1_000_000_000,
+            diameter = 142_984,
+            gravity = "2.5 standard",
+            terrain = "gas giant"
         )
 
     )

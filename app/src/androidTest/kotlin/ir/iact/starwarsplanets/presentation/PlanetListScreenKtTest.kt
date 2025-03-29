@@ -8,6 +8,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
 import androidx.compose.ui.test.performClick
 import ir.iact.starwarsplanets.domain.model.Planet
+import ir.iact.starwarsplanets.presentation.PlanetData.planet
+import ir.iact.starwarsplanets.presentation.PlanetData.planet2
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListScreen
@@ -22,17 +24,6 @@ class PlanetListScreenKtTest {
 
     @Test
     fun showPlanetListWhenDataAvailable() {
-        val planet = Planet(
-            name = "Earth",
-            climate = "Tropical",
-            population = 7_000_000_000
-        )
-        val planet2 = Planet(
-            name = "Mars",
-            climate = "Cold",
-            population = 0
-        )
-
         composeTestRule.setContent {
             PlanetListScreen(
                 state = UiState(
@@ -53,11 +44,6 @@ class PlanetListScreenKtTest {
 
     @Test
     fun showLoadingWhenDataIsLoading() {
-        val planet = Planet(
-            name = "Earth",
-            climate = "Tropical",
-            population = 7_000_000_000
-        )
         composeTestRule.setContent {
             PlanetListScreen(
                 state = UiState(
@@ -74,11 +60,6 @@ class PlanetListScreenKtTest {
 
     @Test
     fun showErrorWithRetryButtonWhenDataHasError() {
-        val planet = Planet(
-            name = "Earth",
-            climate = "Tropical",
-            population = 7_000_000_000
-        )
         composeTestRule.setContent {
             PlanetListScreen(
                 state = UiState(
@@ -98,11 +79,6 @@ class PlanetListScreenKtTest {
 
     @Test
     fun onRetryClickedShouldTriggerUiInteractionForRetry() {
-        val planet = Planet(
-            name = "Earth",
-            climate = "Tropical",
-            population = 7_000_000_000
-        )
         var retryButtonClicked: Boolean = false
         composeTestRule.setContent {
             PlanetListScreen(
@@ -125,11 +101,6 @@ class PlanetListScreenKtTest {
 
     @Test
     fun onItemClickedTriggerUiInteractionForPlanetSelected() {
-        val planet = Planet(
-            name = "Earth",
-            climate = "Tropical",
-            population = 7_000_000_000
-        )
         var selectedPlanet: Planet? = null
         composeTestRule.setContent {
             PlanetListScreen(

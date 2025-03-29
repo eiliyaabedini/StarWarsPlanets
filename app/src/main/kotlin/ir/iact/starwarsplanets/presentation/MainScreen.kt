@@ -12,6 +12,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import ir.iact.starwarsplanets.domain.model.Planet
+import ir.iact.starwarsplanets.presentation.planetdetail.PlanetDetailContract
+import ir.iact.starwarsplanets.presentation.planetdetail.PlanetDetailScreen
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListScreen
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListViewModel
 import ir.iact.starwarsplanets.ui.theme.StarWarsPlanetsTheme
@@ -46,10 +48,15 @@ fun MainScreen() {
                     val args = it.toRoute<PlanetDetail>()
                     PlanetDetailScreen(
                         modifier = Modifier.padding(innerPadding),
-                        planet = Planet(
-                            name = args.planetName,
-                            climate = "Tropical",
-                            population = 7_000_000_000
+                        state = PlanetDetailContract.UiState(
+                            Planet(
+                                name = args.planetName,
+                                climate = "Tropical",
+                                population = 7_000_000_000,
+                                diameter = 100_000,
+                                gravity = "Cold",
+                                terrain = "Tropical"
+                            )
                         )
                     )
                 }

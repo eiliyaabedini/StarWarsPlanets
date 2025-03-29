@@ -153,12 +153,18 @@ fun PlanetItemPreview() {
     val planet = Planet(
         name = "Earth",
         climate = "Tropical",
-        population = 7_000_000_000
+        population = 7_000_000_000,
+        diameter = 100_000,
+        gravity = "Cold",
+        terrain = "Tropical"
     )
     val planet2 = Planet(
         name = "Mars",
         climate = "Cold",
-        population = 0
+        population = 0,
+        diameter = 100_000,
+        gravity = "Cold",
+        terrain = "Tropical"
     )
 
     Column {

@@ -15,40 +15,59 @@ class PlanetRepositoryImplTest {
 
     private val planetDtoList = listOf(
         PlanetDto(
-            name = "Planet1",
+            name = "Tatooine",
             climate = "Temperate",
             population = "1000000",
+            diameter = "10465",
+            gravity = "1 standard",
+            terrain = "desert",
+            created = "2014-12-09T13:50:49.641000Z"
+
+        ),
+        PlanetDto(
+            name = "Alderaan",
+            climate = "Temperate",
+            population = "1000000",
+            diameter = "12500",
+            gravity = "1 standard",
+            terrain = "grasslands, mountains",
             created = "2014-12-09T13:50:49.641000Z"
         ),
         PlanetDto(
-            name = "Planet2",
-            climate = "Temperate",
-            population = "1000000",
-            created = "2014-12-09T13:50:49.641000Z"
-        ),
-        PlanetDto(
-            name = "Planet3",
+            name = "Hoth",
             climate = "frozen",
             population = "unknown",
+            diameter = "7200",
+            gravity = "1.1 standard",
+            terrain = "tundra, ice caves, mountain ranges",
             created = "2014-12-10T11:39:13.934000Z"
         )
     )
 
     private val planetDomainList = listOf(
         Planet(
-            name = "Planet1",
+            name = "Tatooine",
             climate = "Temperate",
-            population = 1000000
+            population = 1000000,
+            diameter = 10465,
+            gravity = "1 standard",
+            terrain = "desert"
         ),
         Planet(
-            name = "Planet2",
+            name = "Alderaan",
             climate = "Temperate",
-            population = 1000000
+            population = 1000000,
+            diameter = 12500,
+            gravity = "1 standard",
+            terrain = "grasslands, mountains"
         ),
         Planet(
-            name = "Planet3",
+            name = "Hoth",
             climate = "frozen",
-            population = null
+            population = null,
+            diameter = 7200,
+            gravity = "1.1 standard",
+            terrain = "tundra, ice caves, mountain ranges"
         )
     )
 

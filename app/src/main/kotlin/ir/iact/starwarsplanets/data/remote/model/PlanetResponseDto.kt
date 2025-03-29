@@ -20,6 +20,12 @@ data class PlanetDto(
     val climate: String,
     @SerializedName("population")
     val population: String,
+    @SerializedName("diameter")
+    val diameter: String,
+    @SerializedName("terrain")
+    val terrain: String,
+    @SerializedName("gravity")
+    val gravity: String,
     @SerializedName("created")
     val created: String,
 )

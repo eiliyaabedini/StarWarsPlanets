@@ -17,7 +17,10 @@ class PlanetRepositoryImpl @Inject constructor(
 private fun PlanetDto.toDomain(): Planet = Planet(
     name = name,
     climate = climate,
-    population = population.toLongOrNull()
+    population = population.toLongOrNull(),
+    diameter = diameter.toInt(),
+    gravity = gravity,
+    terrain = terrain
 )
 
 
