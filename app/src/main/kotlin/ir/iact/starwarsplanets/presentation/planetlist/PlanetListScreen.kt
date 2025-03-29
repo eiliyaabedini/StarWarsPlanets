@@ -1,5 +1,6 @@
 package ir.iact.starwarsplanets.presentation.planetlist
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,7 +35,9 @@ fun PlanetListScreen(
             val planet = state.planets[index]
             PlanetItem(
                 planet = planet,
-                modifier = Modifier
+                modifier = Modifier.clickable {
+                    onUiInteraction(UiInteraction.OnPlanetClicked(planet))
+                }
             )
         }
     }
@@ -96,5 +99,6 @@ fun PlanetItemPreview() {
     PlanetListScreen(
         state = UiState(planets = listOf(planet, planet2), isLoading = false),
         modifier = Modifier.padding(16.dp),
+        onUiInteraction = {}
     )
 }
