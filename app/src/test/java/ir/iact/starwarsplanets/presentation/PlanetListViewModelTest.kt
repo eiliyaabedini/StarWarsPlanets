@@ -2,7 +2,8 @@ package ir.iact.starwarsplanets.presentation
 
 import CoroutineTestRule
 import app.cash.turbine.test
-import ir.iact.starwarsplanets.presentation.model.PlanetListUiState
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListViewModel
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceTimeBy
@@ -29,11 +30,11 @@ class PlanetListViewModelTest {
 
         viewModel.uiState.test {
             // First emission should be initial Empty state
-            assertEquals(PlanetListUiState.Empty, awaitItem())
+            assertEquals(UiState.Empty, awaitItem())
 
             // Then we expect the loading state emitted from initiateData()
             assertEquals(
-                PlanetListUiState.Empty.copy(isLoading = true),
+                UiState.Empty.copy(isLoading = true),
                 awaitItem()
             )
         }
@@ -46,11 +47,11 @@ class PlanetListViewModelTest {
         viewModel.uiState.test {
             // First emission should be initial Empty state
             val initialState = awaitItem()
-            assertEquals(PlanetListUiState.Empty, initialState)
+            assertEquals(UiState.Empty, initialState)
 
             // Then we expect the loading state emitted from initiateData()
             assertEquals(
-                PlanetListUiState.Empty.copy(isLoading = true),
+                UiState.Empty.copy(isLoading = true),
                 awaitItem()
             )
 
@@ -58,7 +59,7 @@ class PlanetListViewModelTest {
 
             // Then we expect the success state to emit list of planets from initiateData()
             assertEquals(
-                PlanetListUiState(
+                UiState(
                     isLoading = false,
                     planets = planetUseCase.planetsMap.values.toList()
                 ),
@@ -75,11 +76,11 @@ class PlanetListViewModelTest {
         viewModel.uiState.test {
             // First emission should be initial Empty state
             val initialState = awaitItem()
-            assertEquals(PlanetListUiState.Empty, initialState)
+            assertEquals(UiState.Empty, initialState)
 
             // Then we expect the loading state emitted from initiateData()
             assertEquals(
-                PlanetListUiState.Empty.copy(isLoading = true),
+                UiState.Empty.copy(isLoading = true),
                 awaitItem()
             )
 
@@ -87,7 +88,7 @@ class PlanetListViewModelTest {
 
             // Then we expect the success state to emit list of planets from initiateData()
             assertEquals(
-                PlanetListUiState(
+                UiState(
                     isLoading = false,
                     hasError = "Error",
                     planets = emptyList()

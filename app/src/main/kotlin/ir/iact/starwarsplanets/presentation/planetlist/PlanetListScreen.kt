@@ -1,4 +1,4 @@
-package ir.iact.starwarsplanets.presentation
+package ir.iact.starwarsplanets.presentation.planetlist
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,18 +17,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ir.iact.starwarsplanets.R
 import ir.iact.starwarsplanets.domain.model.Planet
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiInteraction
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
 
 // Planet Compose Screen that shows list of planets using lazy column
 @Composable
 fun PlanetListScreen(
     modifier: Modifier = Modifier,
-    planets: List<Planet>
+    state: UiState,
+    onUiInteraction: (UiInteraction) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier
     ) {
-        items(planets.size) { index ->
-            val planet = planets[index]
+        items(state.planets.size) { index ->
+            val planet = state.planets[index]
             PlanetItem(
                 planet = planet,
                 modifier = Modifier
@@ -91,7 +94,7 @@ fun PlanetItemPreview() {
         population = 0
     )
     PlanetListScreen(
-        planets = listOf(planet, planet2),
-        modifier = Modifier.padding(16.dp)
+        state = UiState(planets = listOf(planet, planet2), isLoading = false),
+        modifier = Modifier.padding(16.dp),
     )
 }

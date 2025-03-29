@@ -1,10 +1,10 @@
-package ir.iact.starwarsplanets.presentation
+package ir.iact.starwarsplanets.presentation.planetlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.iact.starwarsplanets.domain.usecase.PlanetUseCase
-import ir.iact.starwarsplanets.presentation.model.PlanetListUiState
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -17,24 +17,24 @@ class PlanetListViewModel @Inject constructor(
     private val planetUseCase: PlanetUseCase
 ) : ViewModel() {
 
-    private var _uiState = MutableStateFlow(PlanetListUiState.Empty)
+    private var _uiState = MutableStateFlow(UiState.Empty)
 
     val uiState = _uiState
         .onStart { initiateData() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = PlanetListUiState.Empty
+            initialValue = UiState.Empty
         )
 
     private fun initiateData() {
         viewModelScope.launch {
-            _uiState.value = PlanetListUiState(isLoading = true, planets = emptyList())
+            _uiState.value = UiState(isLoading = true, planets = emptyList())
             try {
                 val planets = planetUseCase.getPlanets()
-                _uiState.value = PlanetListUiState(isLoading = false, planets = planets)
+                _uiState.value = UiState(isLoading = false, planets = planets)
             } catch (e: Exception) {
-                _uiState.value = PlanetListUiState(
+                _uiState.value = UiState(
                     isLoading = false,
                     hasError = e.message,
                     planets = emptyList()
