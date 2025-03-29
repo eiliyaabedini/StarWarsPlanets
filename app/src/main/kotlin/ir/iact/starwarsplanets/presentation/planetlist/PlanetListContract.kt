@@ -2,6 +2,7 @@ package ir.iact.starwarsplanets.presentation.planetlist
 
 import androidx.compose.runtime.Stable
 import ir.iact.starwarsplanets.domain.model.Planet
+import ir.iact.starwarsplanets.presentation.PlanetDetailDestination
 
 object PlanetListContract {
 
@@ -20,7 +21,7 @@ object PlanetListContract {
     }
 
     sealed class Event {
-        data class NavigateToPlanetDetail(val planet: Planet) : Event()
+        data class NavigateToPlanetDetail(val destination: PlanetDetailDestination) : Event()
     }
 
     sealed class UiInteraction {

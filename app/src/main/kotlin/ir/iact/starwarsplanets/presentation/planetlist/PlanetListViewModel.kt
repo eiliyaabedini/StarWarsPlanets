@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.iact.starwarsplanets.domain.usecase.PlanetUseCase
+import ir.iact.starwarsplanets.presentation.PlanetDetailDestination
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.Event
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiInteraction
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
@@ -55,7 +56,7 @@ class PlanetListViewModel @Inject constructor(
         when (uiInteraction) {
             is UiInteraction.OnPlanetClicked -> {
                 viewModelScope.launch {
-                    _event.send(Event.NavigateToPlanetDetail(uiInteraction.planet))
+                    _event.send(Event.NavigateToPlanetDetail(PlanetDetailDestination(uiInteraction.planet.name)))
                 }
             }
 

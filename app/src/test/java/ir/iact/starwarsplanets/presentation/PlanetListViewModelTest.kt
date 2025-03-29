@@ -147,7 +147,10 @@ class PlanetListViewModelTest {
             viewModel.event.test {
                 viewModel.onUiInteraction(UiInteraction.OnPlanetClicked(selectedPlanet))
 
-                assertEquals(Event.NavigateToPlanetDetail(selectedPlanet), awaitItem())
+                assertEquals(
+                    Event.NavigateToPlanetDetail(PlanetDetailDestination(selectedPlanet.name)),
+                    awaitItem()
+                )
             }
         }
 }
