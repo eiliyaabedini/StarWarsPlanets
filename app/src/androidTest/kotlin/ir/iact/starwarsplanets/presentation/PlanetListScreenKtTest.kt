@@ -136,7 +136,6 @@ class PlanetListScreenKtTest {
                 state = UiState(
                     planets = listOf(planet),
                     isLoading = false,
-                    hasError = "Error happened while fetching data"
                 ),
                 onUiInteraction = {
                     if (it is PlanetListContract.UiInteraction.OnPlanetClicked) {
@@ -149,6 +148,4 @@ class PlanetListScreenKtTest {
         composeTestRule.onNodeWithText("Earth").onParent().performClick()
         assertEquals(planet, selectedPlanet)
     }
-
-
 }

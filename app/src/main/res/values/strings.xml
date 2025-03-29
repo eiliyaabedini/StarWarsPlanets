@@ -3,4 +3,5 @@
     <string name="climate">Climate:</string>
     <string name="population">Population: %1$s</string>
     <string name="unknown">Unknown</string>
+    <string name="retry">Retry</string>
 </resources>
