@@ -1,4 +1,4 @@
-package ir.iact.starwarsplanets.ui.theme
+package ir.iact.starwarsplanets.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

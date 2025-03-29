@@ -11,12 +11,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import ir.iact.starwarsplanets.core.ui.theme.StarWarsPlanetsTheme
 import ir.iact.starwarsplanets.domain.model.Planet
 import ir.iact.starwarsplanets.presentation.planetdetail.PlanetDetailContract
 import ir.iact.starwarsplanets.presentation.planetdetail.PlanetDetailScreen
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListScreen
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListViewModel
-import ir.iact.starwarsplanets.ui.theme.StarWarsPlanetsTheme
 import kotlinx.serialization.Serializable
 
 @Serializable
