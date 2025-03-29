@@ -25,9 +25,9 @@ class PlanetDetailScreenKtTest {
 
         composeTestRule.onNodeWithText("Tatooine").assertIsDisplayed()
         composeTestRule.onNodeWithText("arid").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Population: 200000").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Diameter: 10465").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Gravity: 1 standard").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Terrain: desert").assertIsDisplayed()
+        composeTestRule.onNodeWithText("200000").assertIsDisplayed()
+        composeTestRule.onNodeWithText("10465").assertIsDisplayed()
+        composeTestRule.onNodeWithText("1 standard").assertIsDisplayed()
+        composeTestRule.onNodeWithText("desert").assertIsDisplayed()
     }
 }
