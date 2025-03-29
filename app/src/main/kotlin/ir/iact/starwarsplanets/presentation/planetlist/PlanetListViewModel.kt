@@ -4,10 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.iact.starwarsplanets.domain.usecase.PlanetUseCase
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.Event
+import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiInteraction
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,6 +20,10 @@ import javax.inject.Inject
 class PlanetListViewModel @Inject constructor(
     private val planetUseCase: PlanetUseCase
 ) : ViewModel() {
+
+    private var _event = Channel<Event>()
+
+    val event = _event.receiveAsFlow()
 
     private var _uiState = MutableStateFlow(UiState.Empty)
 
@@ -40,6 +48,18 @@ class PlanetListViewModel @Inject constructor(
                     planets = emptyList()
                 )
             }
+        }
+    }
+
+    fun onUiInteraction(uiInteraction: UiInteraction) {
+        when (uiInteraction) {
+            is UiInteraction.OnPlanetClicked -> {
+                viewModelScope.launch {
+                    _event.send(Event.NavigateToPlanetDetail(uiInteraction.planet))
+                }
+            }
+
+            UiInteraction.OnRetryClicked -> initiateData()
         }
     }
 }
