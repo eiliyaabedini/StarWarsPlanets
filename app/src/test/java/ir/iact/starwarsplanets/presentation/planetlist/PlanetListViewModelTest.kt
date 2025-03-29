@@ -13,6 +13,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import stub.FakePlanetUseCase
+import stub.PlanetData
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class PlanetListViewModelTest {
@@ -61,7 +62,7 @@ class PlanetListViewModelTest {
             assertEquals(
                 UiState(
                     isLoading = false,
-                    planets = planetUseCase.planetsMap.values.toList()
+                    planets = PlanetData.planetsMap.values.toList()
                 ),
                 awaitItem()
             )
@@ -129,7 +130,7 @@ class PlanetListViewModelTest {
             assertEquals(
                 UiState(
                     isLoading = false,
-                    planets = planetUseCase.planetsMap.values.toList()
+                    planets = PlanetData.planetsMap.values.toList()
                 ),
                 awaitItem()
             )
@@ -140,7 +141,7 @@ class PlanetListViewModelTest {
     fun `GIVEN OnPlanetClicked WHEN onUiInteraction THEN send NavigateToPlanetDetail event`() =
         runTest {
             viewModel = PlanetListViewModel(planetUseCase)
-            val selectedPlanet = planetUseCase.planetsMap.values.first()
+            val selectedPlanet = PlanetData.planetEarth
 
             viewModel.event.test {
                 viewModel.onUiInteraction(UiInteraction.OnPlanetClicked(selectedPlanet))

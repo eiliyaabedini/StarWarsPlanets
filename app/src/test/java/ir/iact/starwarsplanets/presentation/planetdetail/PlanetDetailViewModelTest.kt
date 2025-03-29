@@ -15,6 +15,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import stub.FakePlanetUseCase
+import stub.PlanetData
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class PlanetDetailViewModelTest {
@@ -40,7 +41,7 @@ class PlanetDetailViewModelTest {
             assertEquals(PlanetDetailContract.UiState.Empty, initialState)
             assertEquals(
                 PlanetDetailContract.UiState(
-                    planet = planetUseCase.planetsMap.values.first()
+                    planet = PlanetData.planetEarth
                 ),
                 awaitItem()
             )

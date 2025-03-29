@@ -8,34 +8,6 @@ class FakePlanetUseCase : PlanetUseCase {
 
     private var shouldReturnError = false
 
-    val planetsMap = mutableMapOf(
-        "Earth" to Planet(
-            name = "Earth",
-            climate = "Tropical",
-            population = 7_000_000_000,
-            diameter = 12_756,
-            gravity = "1 standard",
-            terrain = "grasslands, mountains"
-        ),
-        "Mars" to Planet(
-            name = "Mars",
-            climate = "Cold",
-            population = 0,
-            diameter = 6_792,
-            gravity = "0.3 standard",
-            terrain = "deserts"
-        ),
-        "Jupiter" to Planet(
-            name = "Jupiter",
-            climate = "Hot",
-            population = 1_000_000_000,
-            diameter = 142_984,
-            gravity = "2.5 standard",
-            terrain = "gas giant"
-        )
-
-    )
-
     fun setShouldReturnError(value: Boolean) {
         shouldReturnError = value
     }
@@ -46,7 +18,7 @@ class FakePlanetUseCase : PlanetUseCase {
         if (shouldReturnError) {
             throw Exception("Error")
         }
-        return planetsMap.values.toList()
+        return PlanetData.planetsMap.values.toList()
     }
 
     override suspend fun getPlanet(name: String): Planet {
@@ -54,6 +26,6 @@ class FakePlanetUseCase : PlanetUseCase {
         if (shouldReturnError) {
             throw Exception("Error")
         }
-        return planetsMap[name] ?: throw IllegalArgumentException("Planet not found")
+        return PlanetData.planetsMap[name] ?: throw IllegalArgumentException("Planet not found")
     }
 }

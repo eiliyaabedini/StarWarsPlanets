@@ -1,10 +1,10 @@
 package ir.iact.starwarsplanets.domain.usecase
 
-import ir.iact.starwarsplanets.domain.model.Planet
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import stub.FakePlanetRepository
+import stub.PlanetData
 
 class PlanetUseCaseImplTest {
 
@@ -13,37 +13,11 @@ class PlanetUseCaseImplTest {
 
     @Test
     fun `WHEN getPlanets THEN return planets from repository`() = runTest {
-        val expectedPlanets = listOf(
-            Planet(
-                name = "Tatooine",
-                population = 200000L,
-                climate = "arid",
-                diameter = 10465,
-                gravity = "1 standard",
-                terrain = "desert"
-            ),
-            Planet(
-                name = "Alderaan",
-                population = 2000000000L,
-                climate = "temperate",
-                diameter = 12500,
-                gravity = "1 standard",
-                terrain = "grasslands, mountains"
-            ),
-            Planet(
-                name = "Yavin IV",
-                population = 1000L,
-                climate = "tropical, temperate",
-                diameter = 10200,
-                gravity = "1 standard",
-                terrain = "jungle, rainforests"
-            )
-        )
-        planetRepository.setPlanets(expectedPlanets)
+        planetRepository.setPlanets(PlanetData.planetList)
 
         val actualPlanets = planetUseCase.getPlanets()
 
-        assertEquals(expectedPlanets, actualPlanets)
+        assertEquals(PlanetData.planetList, actualPlanets)
     }
 
     @Test(expected = Exception::class)
@@ -54,19 +28,11 @@ class PlanetUseCaseImplTest {
 
     @Test
     fun `WHEN getPlanet THEN return planet from repository`() = runTest {
-        val planet = Planet(
-            name = "Tatooine",
-            population = 200000L,
-            climate = "arid",
-            diameter = 10465,
-            gravity = "1 standard",
-            terrain = "desert"
-        )
-        planetRepository.setPlanets(listOf(planet))
+        planetRepository.setPlanets(listOf(PlanetData.planetTatooine))
 
         val actualPlanet = planetUseCase.getPlanet("Tatooine")
 
-        assertEquals(planet, actualPlanet)
+        assertEquals(PlanetData.planetTatooine, actualPlanet)
     }
 
     @Test(expected = Exception::class)
