@@ -25,6 +25,12 @@ class PlanetRepositoryImplTest {
             climate = "Temperate",
             population = "1000000",
             created = "2014-12-09T13:50:49.641000Z"
+        ),
+        PlanetDto(
+            name = "Planet3",
+            climate = "frozen",
+            population = "unknown",
+            created = "2014-12-10T11:39:13.934000Z"
         )
     )
 
@@ -38,6 +44,11 @@ class PlanetRepositoryImplTest {
             name = "Planet2",
             climate = "Temperate",
             population = 1000000
+        ),
+        Planet(
+            name = "Planet3",
+            climate = "frozen",
+            population = null
         )
     )
 

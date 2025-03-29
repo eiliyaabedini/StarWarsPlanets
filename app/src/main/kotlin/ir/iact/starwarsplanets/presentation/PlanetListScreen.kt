@@ -66,7 +66,10 @@ fun PlanetItem(
                 Text(text = planet.climate, style = MaterialTheme.typography.bodyLarge)
             }
             Text(
-                text = stringResource(R.string.population, planet.population),
+                text = stringResource(
+                    R.string.population,
+                    planet.population ?: stringResource(R.string.unknown)
+                ),
                 style = MaterialTheme.typography.bodyMedium
             )
         }

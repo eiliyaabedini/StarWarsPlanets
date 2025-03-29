@@ -1,6 +1,7 @@
 package ir.iact.starwarsplanets.data.repository
 
 import ir.iact.starwarsplanets.data.remote.PlanetApiService
+import ir.iact.starwarsplanets.data.remote.model.PlanetDto
 import ir.iact.starwarsplanets.domain.model.Planet
 
 class PlanetRepositoryImpl(
@@ -8,6 +9,17 @@ class PlanetRepositoryImpl(
 ) : PlanetRepository {
 
     override suspend fun getPlanets(): List<Planet> {
-        return emptyList()
+        return planetApiService.getPlanets().results.map { it.toDomain() }
     }
 }
+
+private fun PlanetDto.toDomain(): Planet = Planet(
+    name = name,
+    climate = climate,
+    population = population.toLongOrNull()
+)
+
+
+
+
+
