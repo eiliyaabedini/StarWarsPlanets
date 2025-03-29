@@ -7,7 +7,7 @@ class PlanetUseCaseImpl(
     private val planetRepository: PlanetRepository
 ) : PlanetUseCase {
     override suspend fun getPlanets(): List<Planet> {
-        return emptyList()
+        return planetRepository.getPlanets()
     }
 
     override suspend fun getPlanet(name: String): Planet {

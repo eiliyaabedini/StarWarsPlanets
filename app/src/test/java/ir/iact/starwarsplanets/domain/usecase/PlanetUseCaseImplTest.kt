@@ -7,9 +7,9 @@ import org.junit.Test
 import stub.FakePlanetRepository
 
 class PlanetUseCaseImplTest {
+
     private val planetRepository = FakePlanetRepository()
     private val planetUseCase = PlanetUseCaseImpl(planetRepository)
-
 
     @Test
     fun `WHEN getPlanets THEN return planets from repository`() = runTest {
