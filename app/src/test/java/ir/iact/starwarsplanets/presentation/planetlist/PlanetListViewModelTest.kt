@@ -1,11 +1,11 @@
-package ir.iact.starwarsplanets.presentation
+package ir.iact.starwarsplanets.presentation.planetlist
 
 import CoroutineTestRule
 import app.cash.turbine.test
+import ir.iact.starwarsplanets.presentation.PlanetDetailDestination
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.Event
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiInteraction
 import ir.iact.starwarsplanets.presentation.planetlist.PlanetListContract.UiState
-import ir.iact.starwarsplanets.presentation.planetlist.PlanetListViewModel
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceTimeBy
@@ -22,9 +22,7 @@ class PlanetListViewModelTest {
 
     private val planetUseCase = FakePlanetUseCase()
 
-    private var viewModel = PlanetListViewModel(
-        planetUseCase = planetUseCase
-    )
+    private lateinit var viewModel: PlanetListViewModel
 
     @Test
     fun `GIVEN data is loading WHEN view model is initialized THEN show loading`() = runTest {
