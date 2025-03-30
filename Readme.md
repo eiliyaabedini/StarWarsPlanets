@@ -68,3 +68,5 @@ The project is organized into packages by feature and layer for clarity and main
    - **planetlist/** – List screen UI (`PlanetListScreen.kt`) and ViewModel (`PlanetListViewModel.kt`).
    - **planetdetail/** – Detail screen UI (`PlanetDetailScreen.kt`) and ViewModel (`PlanetDetailViewModel.kt`).
 
+---
+Project uses GitHub actions to validate unit tests by CI after each push
