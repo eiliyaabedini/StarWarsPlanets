@@ -39,8 +39,8 @@ The detail view should include the following information about the selected plan
 
 - **Architecture**: Follows a modular **MVVM+UseCase** structure with clear separation of concerns:
 
-   - **Domain Layer**: Business logic, use cases, and repository interface (no Android framework dependencies).
-   - **Data Layer**: Retrofit API service and repository implementation (handles network calls and data mapping).
+   - **Domain Layer**: Business logic, and use cases (no Android framework dependencies).
+   - **Data Layer**: Retrofit API service, local cache, and repository implementation (handles network calls and data mapping).
    - **Presentation Layer**: Jetpack Compose UI screens and ViewModels (with Hilt injection).
 
 - **TDD Workflow**: For each layer, we write unit tests and UI tests first (using fakes for dependencies), then implement just enough code to make tests pass, and finally refactor to the full solution.
@@ -55,13 +55,14 @@ The project is organized into packages by feature and layer for clarity and main
 
 - **domain/** – Core domain logic (entities, use cases, result wrappers).
    - **model/** – Domain models (e.g., `Planet.kt`).
-   - **usecase/** – Use case classes (e.g., `GetPlanetsUseCase.kt`, `GetPlanetDetailUseCase.kt`).
+   - **usecase/** – Use case classes (e.g., `PlanetUseCase.kt`).
 
 - **data/** – Data layer implementations (network DTOs, Retrofit service, repository implementation).
    - **remote/** – Retrofit API interface (`PlanetApiService.kt`) and DTO data classes (`PlanetDto.kt`, `PlanetResponseDto.kt`).
+   - **local/** – Local cache (`PlanetCache.kt`) implementation to keep list of planets in memory.
    - **repository/** – Implementation of domain repository (`PlanetRepositoryImpl.kt`) using the API service.
 
-- **di/** – Hilt modules and Application class for dependency injection setup (e.g., `AppModule.kt`, `StarWarsApp.kt`).
+- **di/** – Hilt modules and Application class for dependency injection setup (e.g., `ApplicationModule.kt`).
 
 - **presentation/** – UI layer (Compose screens, ViewModels, navigation).
    - **planetlist/** – List screen UI (`PlanetListScreen.kt`) and ViewModel (`PlanetListViewModel.kt`).
